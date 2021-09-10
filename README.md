@@ -79,8 +79,8 @@ const {
 | Name													| Value													|
 |-------------------------------|-------------------------------|
 | CONSENT_STATUS.OBTAINED				| 3															|
-| CONSENT_STATUS.NOT_REQUIRED		| 2															|
-| CONSENT_STATUS.REQUIRED				| 1															|
+| CONSENT_STATUS.REQUIRED		    | 2															|
+| CONSENT_STATUS.NOT_REQUIRED		| 1															|
 | CONSENT_STATUS.UNKNOWN				| 0															|
 | DEBUG_GEOGRAPHY.NOT_EEA				| 2															|
 | DEBUG_GEOGRAPHY.EEA			      | 1															|
