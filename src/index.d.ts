@@ -6,7 +6,11 @@
 | EEA | 1 | Geography appears as in EEA for debug devices.  |
 | NOT_EEA | 2 | Geography appears as not in EEA for debug devices.  |
  */
-type DebugGeography = 0|1|2
+type DebugGeography = {
+    DISABLED: 0;
+    EEA: 1;
+    NOT_EEA: 2
+}
 
 type ConsentInfoConfig = {
     debugGeography: DebugGeography,
@@ -21,7 +25,12 @@ type ConsentInfoConfig = {
 | REQUIRED | 2 | User consent required but not yet obtained.  |
 | OBTAINED | 3 | User consent obtained. Personalized vs non-personalized undefined. |
  */
-type ConsentStatus = 0|1|2|3
+type ConsentStatus = {
+    UNKNOWN: 0,
+    NOT_REQUIRED: 1
+    REQUIRED: 2
+    OBTAINED: 3
+}
 
 type ConsentInfoUpdate = {
     consentStatus: ConsentStatus,
@@ -31,31 +40,38 @@ type ConsentInfoUpdate = {
 
 type ConsentFormResponse = {
     consentStatus: ConsentStatus,
-  }
+}
 
-declare module "react-native-ad-consent" {
-    export const DebugGeography:DebugGeography;
-    
-    export const ConsentInfoConfig: ConsentInfoConfig;
 
-    export const ConsentStatus:ConsentStatus;
-
-    export const ConsentInfoUpdate:ConsentInfoUpdate;
-    
-    export const ConsentFormResponse:ConsentFormResponse;
-    
+type UMP = {
+    CONSENT_STATUS: ConsentStatus,
+    DEBUG_GEOGRAPHY: DebugGeography,
     /**
-    * Returns the consent information.
-    */
-    export function requestConsentInfoUpdate(config?: ConsentInfoConfig): Promise<ConsentInfoUpdate>;
-
-    /**
-    * Shows the consent form and returns the updated consentStatus on close.
-    */
-    export function showConsentForm(): Promise<ConsentFormResponse>;
+     * Returns the consent information.
+     */
+    requestConsentInfoUpdate(config?: ConsentInfoConfig): Promise<ConsentInfoUpdate>;
 
     /**
     * Resets the consent state.
     */
-    export function reset(): void;
+    reset(): void;
+
+    /**
+   * Shows the consent form and returns the updated consentStatus on close.
+   */
+    showConsentForm(): Promise<ConsentFormResponse>;
+}
+
+declare module "react-native-ad-consent" {
+    export const DebugGeography: DebugGeography;
+
+    export const ConsentInfoConfig: ConsentInfoConfig;
+
+    export const ConsentStatus: ConsentStatus;
+
+    export const ConsentInfoUpdate: ConsentInfoUpdate;
+
+    export const ConsentFormResponse: ConsentFormResponse;
+
+    export const UMP: UMP;
 }
