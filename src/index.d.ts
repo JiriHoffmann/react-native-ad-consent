@@ -12,11 +12,11 @@ type DebugGeographyOptions = {
     NOT_EEA: 2
 };
 
-type DebugGeographyOptions = 0 | 1 | 2;
+type DebugGeography = 0 | 1 | 2;
 
 
 type ConsentInfoConfig = {
-    debugGeography: DebugGeographyOptions,
+    debugGeography: DebugGeography,
     testDeviceIds: Array<String>,
 };
 
@@ -50,7 +50,7 @@ type ConsentFormResponse = {
 
 type UMP = {
     CONSENT_STATUS: ConsentStatusOptions;
-    DEBUG_GEOGRAPHY: DebugGeography;
+    DEBUG_GEOGRAPHY: DebugGeographyOptions;
     /**
      * Returns the consent information.
      */
